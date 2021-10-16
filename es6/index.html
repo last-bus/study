@@ -326,7 +326,7 @@
     async function f() {
         try {
             await Promise.reject('err');
-        } catch (err) { ... }
+        } catch (err) {  }
         return await Promise.resolve('leo');
     }
     f().then(v => console.log(v)); // 'leo'

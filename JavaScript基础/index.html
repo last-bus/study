@@ -14,18 +14,185 @@
 
 </html>
 <script>
-    // 对象都是通过函数创建的
-    // __proto__ 指向父类的prototype属性
-    // prototype 的属性值是一个对象（属性的集合）
-    // __proto__，这个属性引用了创建这个对象的函数的prototype
-    var arr = new Array()
+
+    // 熟悉JS的基本原理，如：预解析、原型链、Promise(async/await)、闭包、this指向、事件循环等。熟悉DOM、BOM、事件等原生JS代码，能够使用原生代码开发页面功能，能够使用防抖和节流的技术解决不同场景下的问题。
+    
+    
+    /*****************************/
+    // 预解析
+    /*****************************/
+    function  analysis() {
+        // 预解析：在当前作用域下, JS 代码执行之前，浏览器会默认把带有 var 和 function 声明（匿名函数没有function声明，所以不会提升）的变量在内存中进行提前声明或者定义。
+
+        // 代码执行： 从上到下执行JS语句。
+
+        // 预解析会把变量和函数的声明在代码执行之前执行完成。
+
+        // 变量预解析
+        console.log(num);  // 结果是多少？ undefined
+        var num = 10;      // ？
+        // 注意：**变量提升只提升声明，不提升赋值**
+
+
+        // 函数预解析
+        fn(); //--- ”打印“
+        function fn() {
+            console.log('打印');
+        }
+        // 注意：函数声明代表函数整体，所以函数提升后，函数名代表整个函数，但是函数并没有被调用！
+
+        fn();  //报错提示 ”fn is not a function"
+        var  fn = function() {
+            console.log('想不到吧');
+        }
+        // 解释：该段代码执行之前，会做变量声明提升，fn在提升之后的值是undefined；
+        // 而fn调用是在fn被赋值为函数体之前，此时fn的值是undefined，所以无法正确调用
+        
+    }
+    // analysis()
+
+
+
+    /*****************************/
+    // 原型链
+    /*****************************/
+    function PrototypeChains() {
+        // 对象都是通过函数创建的
+        // __proto__ 指向父类的prototype属性
+        // prototype 的属性值是一个对象（属性的集合）
+        // __proto__，这个属性引用了创建这个对象的函数的prototype
+        var arr = new Array()
 
     console.log(arr.__proto__ === Array.prototype) // ture
     console.log(Array.__proto__ === Object.prototype)
-    
+
     console.log(Array.__proto__)
     console.log(Object.prototype)
     console.log(Object.__proto__)
-    
 
+    }
+    // PrototypeChains()
+
+    /*****************************/
+    // Promise(async/await)
+    /*****************************/
+    function asynchronous() {
+        // 1. 创建一个新的Promise对象
+        const p = new Promise((resolve, reject) => { // 执行器函数，同步执行
+            // 2. 执行异步操作任务
+            setTimeout(() => {
+                const time = Date.now() // 如果当前时间是偶数就代表成功，否则代表失败
+                // 3.1 如果成功了，调用resolve(value)
+                if (time % 2 === 0) {
+                    resolve('成功的数据，value = ' + time)
+                } else {
+                    // 3.2 如果失败了，调用reject(reason)
+                    reject('失败的数据，reason = ' + time)
+                }
+
+            }, 1000);
+        })
+
+        // p.then(value => {
+        //     // 接受得到成功的value数据，专业术语：onResolved
+        //     console.log('成功的回调', value)
+        //     return 1
+        // }, reason => {
+        //     // 接受得到失败的reason数据，专业术语：onRejected
+        //     console.log('失败的回调', reason)
+        //     return 2
+
+        // })
+        console.log('执行 1')
+        async function request() {
+            try {
+                console.log('执行 2')
+
+                const result = await p.then(value=>{ console.log('成功的回调', value);return 1 }).catch(err => {
+                    return 2
+                })
+                console.log('执行 4')
+
+                // const newResult = await doSomethingElse(result)
+                // const finalResult = await doThirdThing(newResult)
+                console.log('await 等待执行后 : ' + result)
+            } catch (error) {
+                failureCallback(error)
+            }
+        }
+        request()
+        console.log('执行 3')
+
+        /**
+        1）Promise 构造函数 Promise (excutor) {}，excutor 会在 Promise 内部立即同步回调,异步操作在执行器中执行
+
+            excutor 函数：执行器 (resolve, reject) => {}
+            resolve 函数：内部定义成功时我们调用的函数 value => {}
+            reject 函数：内部定义失败时我们调用的函数 reason => {}
+        2）Promise.prototype.then 方法：(onResolved, onRejected) => {}，指定用于得到成功 value 的成功回调和用于得到失败 reason 的失败回调返回一个新的 promise 对象
+
+        onResolved 函数：成功的回调函数 (value) => {}
+        onRejected 函数：失败的回调函数 (reason) => {}
+        3）Promise.prototype.catch 方法：(onRejected) => {}，onRejected 函数：失败的回调函数 (reason) => {}，then() 的语法糖, 相当于： then(undefined, onRejected)。
+
+        4）Promise.resolve 方法：(value) => {}，value：成功的数据或 promise 对象，返回一个成功/失败的 promise 对象。
+
+        5）Promise.reject 方法：(reason) => {}，reason：失败的原因，返回一个失败的 promise 对象
+
+        6）Promise.all 方法： (promises) => {}，promises：包含 n 个 promise 的数组，返回一个新的 promise, 只有所有的 promise 都成功才成功, 只要有一个失败了就直接失败。
+
+        7）Promise.race 方法：(promises) => {}，promises: 包含 n 个 promise 的数组，返回一个新的 promise, 第一个完成的 promise 的结果状态就是最终的结果状态。
+        **/
+
+
+        // promise 的 then() 返回一个新的 promise, 可以开成 then() 的链式调用，通过 then 的链式调用串连多个同步/异步任务。
+        new Promise((resolve, reject) => {
+            resolve(1)
+            // reject(1)
+        }).then(
+            value => { 
+                console.log('onResolved1()', value);
+                return 2
+            }
+        ).then(
+            value => { 
+                console.log('onResolved2()', value);
+                return 3
+            }
+        ).then(
+            value => { 
+                console.log('onResolved3()', value);
+            }
+        ).catch(
+            reason => { 
+                console.log('onRejected()', reason);  // onRejected() 1
+            }
+        )
+
+
+        // 当使用 promise 的 then 链式调用时, 在中间中断, 不再调用后面的回调函数
+
+        // 办法: 在回调函数中返回一个 pendding 状态的 promise 对象
+        new Promise((resolve, reject) => {
+            resolve(3333)
+        }).then(
+            value => { 
+                console.log('onResolved1()', value);
+                return new Promise(() => {}) // 返回一个 pending 的 Promise，中断 promise 链
+            }
+        ).then( // 这个 then 不会执行力
+            value =>  { console.log('onResolved2()', value); }
+        )
+    }
+    
+    // asynchronous()
+
+
+    /*****************************/
+    // 闭包
+    /*****************************/
+
+
+
+    
 </script>

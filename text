@@ -1,0 +1,22 @@
+	全面掌握HTML、CSS，熟悉W3C标准和使用语义化标签，实现各种动态效果。能够解决主流浏览器的兼容性问题。熟练使用css预处理器，如Sass、Less等。可以熟练使用PC端、移动端布局方式，如：rem响应式布局、Flex Box弹性盒布局、百分比布局等。
+	熟悉JS的基本原理，如：预解析、原型链、Promise(async/await)、闭包、this指向、事件循环等。熟悉DOM、BOM、事件等原生JS代码，能够使用原生代码开发页面功能，能够使用防抖和节流的技术解决不同场景下的问题。
+	熟悉ES5/6/7/8/9语法规范。
+	熟悉Cookie，SessionStorage，LocalStorage各自的原理和区别。
+	熟悉触发同源策略，引发跨域问题的原因，并且能够使用JSONP和Nginx反向代理服务器解决跨域问题。
+	熟练使用流行的UI框架，如ElementUI、Vant、 Iview等。
+	熟练使用Axios进行网络请求，并且熟悉全局配置、请求头、拦截器的配置。
+	简单使用React，简单使用redux + react-redux + redux-saga进行状态管理，了解掌握React的组件间传参的实现方法。能基于脚手架进行项目的快速开发，了解框架的生命周期和使用钩子函数。并能配合各种 UI 框架，编写可复用的用户界面组件。
+	熟悉使用Vue，熟练使用vuex进行状态管理，对Vue的双向数据绑定原理有一定的理解,、熟练掌握组件间传参的实现方法。能基于脚手架进行项目的快速开发，熟悉框架的生命周期和使用钩子函数。并能配合各种 UI 框架，编写可复用的用户界面组件。
+	对MVC、MVVM架构模式有着一定的理解，遵循模块化与组件化规范进行项目开发。
+	熟悉使用json-server与Mockjs在本地模拟后端接口用来测试前端效果，从而实现前端的独立开发，减少等待后端接口开发的时间。
+	有做过react-native开发，主要是对原有的app进行维护
+	有做过flutter开发，主要是项目的搭建和初期页面的开发
+	有做过android开发，熟悉android的开发的目录、打包、开发流程，gradle的简单配置、AndroidManifest.xml配置，了解activity、fragment、adapter等，使用过xui进行开发，里面集成了okhttp3、retrofit，写过一个基于ibeacon和背景运行的原生插件。
+	有做过ios项目的维护，使用objective-c，熟悉Plist、NSUserdefaults等本地存储技术，做过录音模块，熟悉AVAudioPlayer，AVAudioRecorder、AVAudioSession，熟悉ios打包的流程和证书的生成。
+	后端基础：
+	简单使用Nodejs 、PHP服务器语言，能够利用CommonJS提供的path、fs、url、http等模块实现首页服务端渲染，实现SEO 优化.
+	简单使用Koa2这个Web端服务器框架，能够基于Koa脚手架快速搭建框架的目录结构，熟悉使用koa-router路由、koa2-cors 跨域、koa-bodyparser获取POST请求的参数、koa-static请求html页面以及静态数据。
+	熟悉关系型数据库MySQL等使用，熟悉使用SQL语句。
+	熟练使用Webpack构建工具和Git、SVN版本控制工具，进行日常代码管理，并可以较为快速地解决代码冲突问题。
+	熟练掌握npm，cnpm和yarn包管理工具，webpack和gulp打包工具，node版本管理工具nvm。
+	能够使用xshell终端模拟软件访问远端Linux系统，使用winSCP图形化客户端把项目代码上传到服务端上，并且使用Linux的基本命令，从而实现项目的上线。
