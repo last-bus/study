@@ -20,3 +20,13 @@
 	熟练使用Webpack构建工具和Git、SVN版本控制工具，进行日常代码管理，并可以较为快速地解决代码冲突问题。
 	熟练掌握npm，cnpm和yarn包管理工具，webpack和gulp打包工具，node版本管理工具nvm。
 	能够使用xshell终端模拟软件访问远端Linux系统，使用winSCP图形化客户端把项目代码上传到服务端上，并且使用Linux的基本命令，从而实现项目的上线。
+
+
+
+Vue.extend构造器
+$mount手动挂载实例
+mixin混合注入
+父子组件传参、跨级组件传参
+理解Vue构造函数及prototype原形对象
+npm官网注册账号
+webpack打包
