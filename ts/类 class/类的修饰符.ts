@@ -21,8 +21,8 @@ class Son extends Person{
     console.log(this.name3)
   }
 }
-const p = new Person()
-const s = new Son()
+const p = new Person('11')
+const s = new Son('22')
 console.log(p.name1)
 console.log(s.name1)
 
