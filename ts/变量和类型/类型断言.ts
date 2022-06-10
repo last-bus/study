@@ -17,7 +17,7 @@ class Student extends Person{
 }
 
 function sayHello(params:Person) {
-    (p as Student).studying()
+    (params as Student).studying()
 }
 
 const stu =  new Student()
@@ -36,3 +36,5 @@ function name(params?:string) {
 }
 
 name('aaaa')
+
+export {}

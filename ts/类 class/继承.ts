@@ -25,3 +25,5 @@ class Person extends Student{
 
 const p = new Person()
 p.eating()
+
+export {}

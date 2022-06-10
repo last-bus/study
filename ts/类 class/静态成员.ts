@@ -7,6 +7,6 @@ class Person {
 
 const p = new Person()
 console.log(p.name)
-console.log(Person.static)
+console.log(Person.age)
 
-
+export {}
