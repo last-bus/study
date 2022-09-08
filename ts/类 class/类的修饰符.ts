@@ -30,3 +30,4 @@ p.getName1()
 p.getName2()
 s.getName3()
 
+export {}

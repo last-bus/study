@@ -19,3 +19,5 @@ const info1: IInfoType={
 }
 
 info1.name = '2323' // 报错 readonly 只读
+
+export {}

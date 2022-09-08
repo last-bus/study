@@ -117,3 +117,5 @@ function name(params:string|number) {
 
     }
 }
+
+export {}

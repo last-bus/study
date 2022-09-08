@@ -30,3 +30,5 @@ const info ={
     eating: eating
 }
 info.eating() // kaka
+
+export {}

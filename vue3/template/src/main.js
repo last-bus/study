@@ -7,6 +7,8 @@ import '@/request/header'
 import '@/request/request'
 import '@/api/appApi'
 import ElementPlus from 'element-plus'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+
 import 'element-plus/dist/index.css'
 import { getToken } from '@/utils/auth'
 import { refreshToken } from '@/request/refreshToken'
@@ -19,19 +21,21 @@ const req = require.context('@/icons/svg', false, /\.svg$/)
 req.keys().map(req)
 app.component('svg-icon', SvgIcon)
 
-app.use(ElementPlus)
+app.use(ElementPlus, {
+    locale: zhCn, // 汉化
+})
 app.use(store)
 app.use(router)
 app.mount('#app')
 
 // 前置路由守卫
-router.beforeEach((to, from, next) => {
-    if (new Date().getTime() - getToken('tokenTime') > 10 * 60 * 1000) {
-        // 超过10分钟 重新请求一次token
-        refreshToken()
-    }
-    next()
-})
+// router.beforeEach((to, from, next) => {
+//     if (new Date().getTime() - getToken('tokenTime') > 10 * 60 * 1000) {
+//         // 超过10分钟 重新请求一次token
+//         refreshToken()
+//     }
+//     next()
+// })
 
 
 /* 
@@ -45,12 +49,12 @@ router.afterEach((to, from) => {
     if (noList.indexOf(to.path) === -1) {
         // 添加标签栏
         store.dispatch("index/tabsListAdd", {
-                title: to.name,
-                name: to.path,
-            })
-            // 改变标签栏选中 激活项
+            title: to.name,
+            name: to.path,
+        })
+        // 改变标签栏选中 激活项
         store.commit('index/tabsListValueSyn', to.path)
-            // 改变导航栏选中 激活项
+        // 改变导航栏选中 激活项
         store.dispatch('index/activeIndexModify', to.path.substring(1))
     }
 })
